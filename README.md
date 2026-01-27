@@ -113,19 +113,28 @@ Notes:
 - Dark navy background, subtle borders
 - Ignore star ratings and hover hints (do not implement)
 
+## Recent progress
+- Architecture scaffolding added (core/data/domain/player packages, DI modules, models, repos, use cases).
+- Gradle/AGP/Kotlin aligned for AGP 9 + built‑in Kotlin.
+- Switched Hilt processing to KSP.
+- Replaced SimpleXML with Retrofit Scalars; EPG now fetched as raw XML string.
+- TV module modernized to remove deprecated APIs and pass lint.
+- Full `./gradlew build` now succeeds.
+
 ## Development checklist (detailed)
 ### 0) Project setup
 - [ ] Confirm package name, app name, icons
 - [ ] Set minSdk 21, targetSdk latest stable
-- [ ] Add dependencies: Hilt, Retrofit, OkHttp, XML converter, Room, DataStore, Media3, Timber
 - [ ] Base theme + TV-friendly dimensions
 
 ### 1) Architecture scaffolding
-- [ ] Package structure: `ui/`, `domain/`, `data/`, `player/`, `core/`
-- [ ] Models: Channel, Program, Schedule
-- [ ] Repositories: Schedule, Stream, Connectivity
-- [ ] Use cases: FetchSchedule, ObserveConnectivity, SwitchStreamUrl, SelectProgram
-- [ ] Hilt modules for networking, repos, player
+- [x] Package structure: `ui/`, `domain/`, `data/`, `player/`, `core/`
+- [x] Models: Channel, Program, Schedule
+- [x] Repositories: Schedule, Stream, Connectivity (interfaces + impl stubs)
+- [x] Use cases: FetchSchedule, ObserveConnectivity, SwitchStreamUrl, SelectProgram
+- [x] Hilt modules for networking, repos, player
+- [x] Hilt Application class wired in manifests
+- [x] Added dependencies: Hilt, Retrofit, OkHttp, SimpleXML
 
 ### 2) Networking and parsing
 - [ ] Retrofit + XML converter

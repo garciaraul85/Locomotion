@@ -1,0 +1,41 @@
+plugins {
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.hilt.android)
+}
+
+android {
+    namespace 'com.stream.locomotion'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId "com.stream.locomotion"
+        minSdk 21
+        targetSdk 36
+        versionCode 1
+        versionName "1.0"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+    ksp libs.hilt.compiler
+    implementation libs.hilt.android
+    implementation libs.retrofit
+    implementation libs.retrofit.scalars
+    implementation libs.okhttp
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.leanback
+    implementation libs.glide
+}
