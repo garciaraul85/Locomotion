@@ -2,9 +2,10 @@ package com.stream.locomotion
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
+import com.stream.locomotion.ui.guide.GuideFragment
 
 /**
- * Loads [MainFragment].
+ * Loads [GuideFragment].
  */
 class MainActivity : FragmentActivity() {
 
@@ -13,7 +14,7 @@ class MainActivity : FragmentActivity() {
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_browse_fragment, MainFragment())
+                .replace(R.id.main_browse_fragment, GuideFragment())
                 .commitNow()
         }
     }

@@ -17,8 +17,18 @@ class PlaybackVideoFragment : VideoSupportFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val (_, title, description, _, _, videoUrl) =
-            IntentCompat.getSerializableExtra(requireActivity().intent, DetailsActivity.MOVIE, Movie::class.java) as Movie
+        val movie = IntentCompat.getSerializableExtra(
+            requireActivity().intent,
+            DetailsActivity.MOVIE,
+            Movie::class.java
+        )
+        val fallbackUrl = requireActivity().intent.getStringExtra(PlaybackActivity.EXTRA_STREAM_URL)
+        val title = requireActivity().intent.getStringExtra(PlaybackActivity.EXTRA_TITLE) ?: "Locomotion"
+        val description = movie?.description ?: ""
+        val videoUrl = movie?.videoUrl ?: fallbackUrl
+        if (videoUrl.isNullOrBlank()) {
+            return
+        }
 
         val glueHost = VideoSupportFragmentGlueHost(this@PlaybackVideoFragment)
         val playerAdapter = MediaPlayerAdapter(context)

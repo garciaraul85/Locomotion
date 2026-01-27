@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="220dp"
+    android:layout_height="72dp"
+    android:layout_marginEnd="12dp"
+    android:background="#2B3345"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <TextView
+        android:id="@+id/program_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Program Title"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:maxLines="1"/>
+
+    <TextView
+        android:id="@+id/program_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12:00 PM"
+        android:textColor="#9AA4B2"
+        android:textSize="12sp"/>
+</LinearLayout>

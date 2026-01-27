@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="96dp">
+
+    <LinearLayout
+        android:id="@+id/channel_cell"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="12dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/channel_badge"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="#6B63F2"
+            android:gravity="center"
+            android:text="2"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="12dp">
+
+            <TextView
+                android:id="@+id/channel_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ABC"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/channel_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Network"
+                android:textColor="#9AA4B2"
+                android:textSize="12sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/program_row"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        app:layout_constraintStart_toEndOf="@+id/channel_cell"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="32dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
