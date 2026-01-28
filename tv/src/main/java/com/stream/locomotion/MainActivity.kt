@@ -3,10 +3,12 @@ package com.stream.locomotion
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import com.stream.locomotion.ui.guide.GuideFragment
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Loads [GuideFragment].
  */
+@AndroidEntryPoint
 class MainActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

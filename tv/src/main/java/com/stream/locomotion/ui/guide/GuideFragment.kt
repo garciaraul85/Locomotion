@@ -5,13 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.stream.locomotion.R
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class GuideFragment : Fragment() {
 
     private val coordinator = HorizontalScrollCoordinator()
+    private lateinit var viewModel: GuideViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,6 +31,16 @@ class GuideFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this)[GuideViewModel::class.java]
+
+        val offlineBanner = view.findViewById<View>(R.id.offline_banner)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.isOnline.collect { isOnline ->
+                    offlineBanner.visibility = if (isOnline) View.GONE else View.VISIBLE
+                }
+            }
+        }
 
         val timeAxis = view.findViewById<RecyclerView>(R.id.time_axis)
         timeAxis.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)

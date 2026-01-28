@@ -120,6 +120,7 @@ Notes:
 - Replaced SimpleXML with Retrofit Scalars; EPG now fetched as raw XML string.
 - TV module modernized to remove deprecated APIs and pass lint.
 - Full `./gradlew build` now succeeds.
+- Added connectivity detection with offline banners on guide, mobile, and playback screens.
 
 ## Development checklist (detailed)
 ### 0) Project setup
@@ -150,9 +151,9 @@ Notes:
 - [x] Flow for schedule updates
 
 ### 4) Connectivity
-- [ ] ConnectivityManager + NetworkCallback
-- [ ] Expose online/offline state
-- [ ] Global offline banner/overlay
+- [x] ConnectivityManager + NetworkCallback
+- [x] Expose online/offline state
+- [x] Global offline banner/overlay
 
 ### 5) Guide screen
 - [ ] XML layouts: header, time axis, channel list, program grid
@@ -196,3 +197,14 @@ Notes:
 - [ ] Optional analytics/logging
 - [ ] R8/ProGuard rules for Media3 and XML
 - [ ] Versioning + release notes
+
+
+• I can’t commit or push yet: Git can’t create .git/index.lock (Operation not permitted). Even touch .git/index.lock fails, so the repo is blocking new files in .git.
+
+Please fix permissions, then I’ll commit and push. Common fixes:
+
+1. Give your terminal Full Disk Access (System Settings → Privacy & Security → Full Disk Access) and restart the terminal/IDE.
+2. Ensure the repo isn’t on a protected/readonly volume (or move it).
+3. Verify ownership/permissions: ls -ld .git and chmod -R u+rwX .git (if needed).
+
+Once that’s fixed, say “retry commit” and I’ll finish the commit + push.
