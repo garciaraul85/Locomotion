@@ -144,10 +144,10 @@ Notes:
 - [x] Schedule API call + retry
 
 ### 3) Schedule caching
-- [ ] Room entities for Schedule + Program
-- [ ] Cache TTL (5-15 min)
-- [ ] Serve cached schedule on failure
-- [ ] Flow for schedule updates
+- [x] Room entities for Schedule + Program
+- [x] Cache TTL (5-15 min)
+- [x] Serve cached schedule on failure
+- [x] Flow for schedule updates
 
 ### 4) Connectivity
 - [ ] ConnectivityManager + NetworkCallback

@@ -35,6 +35,9 @@ dependencies {
     implementation libs.retrofit
     implementation libs.retrofit.scalars
     implementation libs.okhttp
+    implementation libs.room.runtime
+    implementation libs.room.ktx
+    ksp libs.room.compiler
     implementation libs.androidx.core.ktx
     implementation libs.androidx.constraintlayout
     implementation libs.androidx.leanback

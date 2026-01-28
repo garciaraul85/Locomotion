@@ -1,4 +1,5 @@
 [versions]
+room = "2.7.1"
 scalars = "2.0.0"
 ksp = "2.2.10-2.0.2"
 retrofit = "3.0.0"
@@ -18,6 +19,9 @@ glide = "5.0.5"
 recyclerview = "1.4.0"
 
 [libraries]
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 retrofit-scalars = { group = "com.squareup.retrofit2", name = "converter-scalars", version.ref = "scalars" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
