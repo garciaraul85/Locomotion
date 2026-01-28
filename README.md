@@ -137,11 +137,11 @@ Notes:
 - [x] Added dependencies: Hilt, Retrofit, OkHttp, SimpleXML
 
 ### 2) Networking and parsing
-- [ ] Retrofit + XML converter
-- [ ] XML models for `<tv>`, `<channel>`, `<programme>`
-- [ ] Parse `start/stop` as `yyyyMMddHHmmss Z`
-- [ ] Map XML -> domain models
-- [ ] Schedule API call + retry
+- [x] Retrofit + XML (raw) via Scalars converter
+- [x] XML models for `<tv>`, `<channel>`, `<programme>` (parsed manually)
+- [x] Parse `start/stop` as `yyyyMMddHHmmss Z`
+- [x] Map XML -> domain models
+- [x] Schedule API call + retry
 
 ### 3) Schedule caching
 - [ ] Room entities for Schedule + Program
