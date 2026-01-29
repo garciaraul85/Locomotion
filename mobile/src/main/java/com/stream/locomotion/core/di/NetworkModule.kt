@@ -1,10 +1,13 @@
 package com.stream.locomotion.core.di
 
+import android.content.Context
+import com.stream.locomotion.R
 import com.stream.locomotion.data.remote.EpgService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
@@ -19,9 +22,13 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(client: OkHttpClient): Retrofit {
+    fun provideRetrofit(
+        @ApplicationContext context: Context,
+        client: OkHttpClient
+    ): Retrofit {
+        val baseUrl = context.getString(R.string.epg_base_url)
         return Retrofit.Builder()
-            .baseUrl("http://epg.locomotiontv.com/")
+            .baseUrl(baseUrl)
             .client(client)
             .addConverterFactory(ScalarsConverterFactory.create())
             .build()

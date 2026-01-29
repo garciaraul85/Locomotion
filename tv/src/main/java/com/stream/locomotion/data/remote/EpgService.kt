@@ -1,8 +1,9 @@
 package com.stream.locomotion.data.remote
 
 import retrofit2.http.GET
+import retrofit2.http.Url
 
 interface EpgService {
-    @GET("guia.xml")
-    suspend fun fetchSchedule(): String
+    @GET
+    suspend fun fetchSchedule(@Url url: String): String
 }

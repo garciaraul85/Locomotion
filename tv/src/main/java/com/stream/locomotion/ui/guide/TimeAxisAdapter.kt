@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.stream.locomotion.R
 
 class TimeAxisAdapter(
-    private val items: List<String>
 ) : RecyclerView.Adapter<TimeAxisAdapter.TimeViewHolder>() {
+
+    private val items = mutableListOf<String>()
 
     class TimeViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
 
@@ -23,4 +24,10 @@ class TimeAxisAdapter(
     }
 
     override fun getItemCount(): Int = items.size
+
+    fun submit(newItems: List<String>) {
+        items.clear()
+        items.addAll(newItems)
+        notifyDataSetChanged()
+    }
 }

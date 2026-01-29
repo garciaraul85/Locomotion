@@ -8,8 +8,9 @@ import java.io.StringReader
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
+import javax.inject.Inject
 
-class EpgParser {
+class EpgParser @Inject constructor() {
 
     fun parse(xml: String, preferredChannelId: String? = null): Schedule {
         val channels = mutableMapOf<String, Channel>()
@@ -106,7 +107,6 @@ class EpgParser {
 
         val sdf = SimpleDateFormat("yyyyMMddHHmmss Z", Locale.US).apply {
             isLenient = false
-            timeZone = TimeZone.getTimeZone("UTC")
         }
         val outDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
 

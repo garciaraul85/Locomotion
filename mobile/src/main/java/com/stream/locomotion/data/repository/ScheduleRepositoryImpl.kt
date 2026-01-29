@@ -1,5 +1,7 @@
 package com.stream.locomotion.data.repository
 
+import android.content.Context
+import com.stream.locomotion.R
 import com.stream.locomotion.data.remote.EpgParser
 import com.stream.locomotion.data.remote.EpgService
 import com.stream.locomotion.data.local.ScheduleDao
@@ -12,9 +14,11 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import com.stream.locomotion.domain.model.Schedule
 import com.stream.locomotion.domain.repository.ScheduleRepository
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class ScheduleRepositoryImpl @Inject constructor(
+    @ApplicationContext private val context: Context,
     private val service: EpgService,
     private val parser: EpgParser,
     private val dao: ScheduleDao
@@ -32,7 +36,8 @@ class ScheduleRepositoryImpl @Inject constructor(
         var lastError: Throwable? = null
         repeat(2) {
             try {
-                val xml = service.fetchSchedule()
+                val epgUrl = context.getString(R.string.epg_url)
+                val xml = service.fetchSchedule(epgUrl)
                 val schedule = parser.parse(xml, preferredChannelId = "Locomotion")
                 dao.insertSchedule(schedule.toEntity(now))
                 dao.deleteProgramsForChannel(schedule.channelId)

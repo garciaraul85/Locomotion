@@ -44,6 +44,10 @@ This project is an Android TV + mobile streaming app for a single channel (Locom
 - Programs: `<programme>` with `start`, `stop`, `channel`, `title`, `desc`, `date`, `icon`
 - Time format: `yyyyMMddHHmmss Z` (example: `20260112000000 -0400`)
 
+Observed XML details (curl on 2026-01-29):
+- Includes `<channel>` entries for `Locomotion` and `AZTV`.
+- `<programme>` entries include `start/stop`, `title`, `desc`, `date`, and `icon` fields.
+
 ### Streams (HLS)
 Source playlist: `m3u.m3u` (repo root)
 
@@ -53,10 +57,23 @@ Locomotion URLs (ordered failover):
 - Backup 2 (low): `http://146.19.49.197:81/live/loco_low/index.m3u8`
 - Backup 3 (adaptive): `http://146.19.49.197:81/live/loco.m3u8`
 
+Observed playlist details (curl on 2026-01-29):
+- `http://51.222.85.85:81/hls/loco/index.m3u8` is a media playlist with `.ts` segments (not a master).
+- `http://146.19.49.197:81/live/loco.m3u8` is a master playlist with variants:
+  - `loco_low/index.m3u8`
+  - `loco_mid/index.m3u8`
+  - `loco_hi/index.m3u8`
+- `http://146.19.49.197:81/live/loco_hi/index.m3u8` and `http://146.19.49.197:81/live/loco_low/index.m3u8` are media playlists with `.ts` segments.
+
 Other channels in the playlist (not used for MVP):
 - AnimeZoneTV: `http://animezonetv.com/hls/stream.m3u8`
 - Anime XTV High Server 1: `http://animezonetv.net:81/live_hls/animetest/index.m3u8`
 - Anime XTV High Server 2: `http://146.19.49.197:81/live/animextv_hi/index.m3u8`
+
+Observed playlist details (curl on 2026-01-29):
+- `http://animezonetv.com/hls/stream.m3u8` is a media playlist with `/hls/animeloving/*.ts` segments.
+- `http://animezonetv.net:81/live_hls/animetest/index.m3u8` is a media playlist with `.ts` segments.
+- `http://146.19.49.197:81/live/animextv_hi/index.m3u8` is a media playlist with `.ts` segments.
 
 ### How we use M3U and M3U8
 - `m3u.m3u` gives the top-level HLS URLs.
@@ -156,12 +173,12 @@ Notes:
 - [x] Global offline banner/overlay
 
 ### 5) Guide screen
-- [ ] XML layouts: header, time axis, channel list, program grid
-- [ ] Horizontal scroll (TV D-pad + mobile swipe)
-- [ ] Focus states + selection highlight
-- [ ] Bind schedule to grid
-- [ ] Program click -> Player
-- [ ] Now/Previous/Next controls
+- [x] XML layouts: header, time axis, channel list, program grid
+- [x] Horizontal scroll (TV D-pad + mobile swipe)
+- [x] Focus states + selection highlight
+- [x] Bind schedule to grid
+- [x] Program click -> Player
+- [x] Now/Previous/Next controls
 
 ### 6) Player screen
 - [ ] PlayerFragment + Media3 ExoPlayer

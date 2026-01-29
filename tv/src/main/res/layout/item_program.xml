@@ -1,28 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="220dp"
     android:layout_height="72dp"
     android:layout_marginEnd="12dp"
-    android:background="#2B3345"
-    android:orientation="vertical"
-    android:padding="8dp"
+    android:background="@drawable/bg_program_item"
+    android:layoutDirection="ltr"
     android:focusable="true"
     android:focusableInTouchMode="true">
 
-    <TextView
-        android:id="@+id/program_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Program Title"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        android:maxLines="1"/>
+    <View
+        android:id="@+id/program_progress_fill"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:background="#344560"
+        android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/program_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="12:00 PM"
-        android:textColor="#9AA4B2"
-        android:textSize="12sp"/>
-</LinearLayout>
+    <View
+        android:id="@+id/program_progress_line"
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:background="#FF2D2D"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/program_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Program Title"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:maxLines="1"/>
+
+        <TextView
+            android:id="@+id/program_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12:00 PM"
+            android:textColor="#9AA4B2"
+            android:textSize="12sp"/>
+    </LinearLayout>
+
+</FrameLayout>

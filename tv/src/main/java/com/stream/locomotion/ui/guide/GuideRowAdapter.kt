@@ -6,14 +6,14 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.stream.locomotion.PlaybackActivity
 import com.stream.locomotion.R
-import android.content.Intent
 
 class GuideRowAdapter(
-    private val rows: List<GuideRowUi>,
-    private val coordinator: HorizontalScrollCoordinator
+    private val coordinator: HorizontalScrollCoordinator,
+    private val onProgramClick: (GuideRowUi, ProgramUi?) -> Unit
 ) : RecyclerView.Adapter<GuideRowAdapter.RowViewHolder>() {
+
+    private val rows = mutableListOf<GuideRowUi>()
 
     class RowViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
         val channelCell: LinearLayout = view.findViewById(R.id.channel_cell)
@@ -36,11 +36,7 @@ class GuideRowAdapter(
         holder.channelSubtitle.text = row.channel.subtitle
 
         holder.channelCell.setOnClickListener {
-            val context = holder.itemView.context
-            context.startActivity(Intent(context, PlaybackActivity::class.java).apply {
-                putExtra(PlaybackActivity.EXTRA_STREAM_URL, DEFAULT_STREAM_URL)
-                putExtra(PlaybackActivity.EXTRA_TITLE, row.channel.name)
-            })
+            onProgramClick(row, null)
         }
 
         holder.programRow.layoutManager = LinearLayoutManager(
@@ -48,12 +44,8 @@ class GuideRowAdapter(
             RecyclerView.HORIZONTAL,
             false
         )
-        holder.programRow.adapter = ProgramAdapter(row.programs) {
-            val context = holder.itemView.context
-            context.startActivity(Intent(context, PlaybackActivity::class.java).apply {
-                putExtra(PlaybackActivity.EXTRA_STREAM_URL, DEFAULT_STREAM_URL)
-                putExtra(PlaybackActivity.EXTRA_TITLE, row.channel.name)
-            })
+        holder.programRow.adapter = ProgramAdapter(row.programs) { program ->
+            onProgramClick(row, program)
         }
 
         coordinator.register(holder.programRow)
@@ -61,7 +53,9 @@ class GuideRowAdapter(
 
     override fun getItemCount(): Int = rows.size
 
-    companion object {
-        private const val DEFAULT_STREAM_URL = "http://51.222.85.85:81/hls/loco/index.m3u8"
+    fun submit(newRows: List<GuideRowUi>) {
+        rows.clear()
+        rows.addAll(newRows)
+        notifyDataSetChanged()
     }
 }

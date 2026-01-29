@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">epg.locomotiontv.com</domain>
+        <domain includeSubdomains="true">locomotiontv.com</domain>
+        <domain includeSubdomains="false">51.222.85.85</domain>
+        <domain includeSubdomains="false">146.19.49.197</domain>
+        <domain includeSubdomains="true">animezonetv.com</domain>
+        <domain includeSubdomains="true">animezonetv.net</domain>
+    </domain-config>
+</network-security-config>

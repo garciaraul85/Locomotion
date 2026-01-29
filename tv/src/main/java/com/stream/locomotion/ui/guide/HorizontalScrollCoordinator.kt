@@ -18,4 +18,10 @@ class HorizontalScrollCoordinator {
             }
         })
     }
+
+    fun scrollToPosition(position: Int) {
+        isSyncing = true
+        rows.forEach { it.scrollToPosition(position) }
+        isSyncing = false
+    }
 }
